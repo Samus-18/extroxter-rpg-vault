@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Extroxter RPG Vault</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <header class="hero">
+    <nav class="nav">
+      <div class="brand"><span class="cube"></span> Extroxter RPG Vault</div>
+      <div class="navlinks">
+        <a href="#mods">Mody</a>
+        <a href="#textures">Textury</a>
+        <a href="#shaders">Shadery</a>
+        <a href="admin.html">Admin generator</a>
+      </div>
+    </nav>
+    <section class="hero-content">
+      <p class="eyebrow">Minecraft RPG-like download stránka</p>
+      <h1>Tvoje mody, texture packy a shadery na jednom odkazu.</h1>
+      <p class="lead">Nahraj soubory do složky <b>downloads</b>, uprav <b>downloads/manifest.json</b> a každý, kdo zná odkaz, si je může stáhnout.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#downloads">Zobrazit downloady</a>
+        <a class="btn ghost" href="README_SITE.txt">Jak přidat soubory</a>
+      </div>
+    </section>
+  </header>
+
+  <main id="downloads" class="wrap">
+    <section class="toolbar">
+      <div>
+        <h2>Download Vault</h2>
+        <p>Filtruj podle kategorií nebo hledej konkrétní pack.</p>
+      </div>
+      <input id="search" type="search" placeholder="Hledat mod, shader, texture pack..." />
+    </section>
+
+    <section class="filters">
+      <button class="filter active" data-filter="all">Vše</button>
+      <button class="filter" data-filter="mod">Mody</button>
+      <button class="filter" data-filter="texture">Textury</button>
+      <button class="filter" data-filter="shader">Shadery</button>
+    </section>
+
+    <section id="grid" class="grid"></section>
+
+    <section class="empty" id="empty" hidden>
+      <h3>Nic nenalezeno</h3>
+      <p>Zkus jiný název nebo uprav manifest.</p>
+    </section>
+  </main>
+
+  <footer>
+    <span>Extroxter RPG Vault</span>
+    <span>Static site • GitHub Pages / Netlify / Vercel ready</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vault Admin Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="admin-page">
+  <div class="noise"></div>
+  <main class="wrap admin">
+    <a class="back" href="index.html">← zpět na web</a>
+    <h1>Manifest generator</h1>
+    <p class="lead">Tohle je čistě lokální pomocník. Vyplň položku, klikni přidat, potom stáhni nový <b>manifest.json</b> a nahraj ho do složky <b>downloads</b>.</p>
+
+    <section class="admin-card">
+      <div class="form-grid">
+        <label>Název <input id="name" placeholder="Devourer Ascension" /></label>
+        <label>Kategorie
+          <select id="category">
+            <option value="mod">Mod</option>
+            <option value="texture">Texture pack</option>
+            <option value="shader">Shader</option>
+          </select>
+        </label>
+        <label>Verze <input id="version" placeholder="1.20.1 / 0.5.16" /></label>
+        <label>Soubor cesta <input id="file" placeholder="downloads/mods/devourer.jar" /></label>
+        <label>Velikost <input id="size" placeholder="3.2 MB" /></label>
+        <label>Tags <input id="tags" placeholder="forge, rpg, abilities" /></label>
+      </div>
+      <label>Popis <textarea id="description" placeholder="Krátký popis..." rows="4"></textarea></label>
+      <button class="btn primary" id="add">Přidat položku</button>
+      <button class="btn ghost" id="download">Stáhnout manifest.json</button>
+    </section>
+
+    <pre id="output" class="manifest-box"></pre>
+  </main>
+  <script>
+    const items = [];
+    const out = document.getElementById('output');
+    function refresh(){ out.textContent = JSON.stringify({items}, null, 2); }
+    document.getElementById('add').onclick = () => {
+      const item = {
+        name: document.getElementById('name').value.trim(),
+        category: document.getElementById('category').value,
+        version: document.getElementById('version').value.trim(),
+        file: document.getElementById('file').value.trim(),
+        size: document.getElementById('size').value.trim(),
+        tags: document.getElementById('tags').value.split(',').map(x=>x.trim()).filter(Boolean),
+        description: document.getElementById('description').value.trim()
+      };
+      if(!item.name || !item.file){ alert('Vyplň aspoň název a cestu k souboru.'); return; }
+      items.push(item); refresh();
+    };
+    document.getElementById('download').onclick = () => {
+      const blob = new Blob([JSON.stringify({items}, null, 2)], {type:'application/json'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob); a.download = 'manifest.json'; a.click();
+      URL.revokeObjectURL(a.href);
+    };
+    refresh();
+  </script>
+</body>
+</html>
