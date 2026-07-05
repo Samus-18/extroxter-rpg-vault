@@ -4,60 +4,326 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Extroxter RPG Vault</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Minecraft RPG mods, texture packs, shaders and TBOI Repentance mods by Extroxter CZ." />
+  <style>
+    :root{
+      --bg:#07080e;
+      --bg2:#111322;
+      --panel:rgba(19,24,38,.78);
+      --panel2:rgba(9,12,20,.88);
+      --line:rgba(135,205,255,.20);
+      --text:#f4f8ff;
+      --muted:#a9b7c9;
+      --gold:#ffd166;
+      --cyan:#60efff;
+      --purple:#9b5cff;
+      --red:#ff5370;
+      --green:#77dd77;
+      --shadow:0 22px 70px rgba(0,0,0,.55);
+      --radius:24px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--text);
+      font-family:Inter, Segoe UI, Arial, sans-serif;
+      background:
+        radial-gradient(circle at 18% 10%, rgba(96,239,255,.16), transparent 30%),
+        radial-gradient(circle at 82% 15%, rgba(155,92,255,.18), transparent 32%),
+        radial-gradient(circle at 55% 75%, rgba(255,209,102,.09), transparent 32%),
+        linear-gradient(180deg,#05060b 0%,#101323 55%,#07080e 100%);
+      overflow-x:hidden;
+    }
+    body:before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.12;
+      background-image:
+        linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px);
+      background-size:34px 34px;
+      mask-image:linear-gradient(to bottom, black, transparent 85%);
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(1180px, calc(100% - 32px)); margin:0 auto}
+
+    .topbar{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter:blur(18px);
+      background:rgba(5,7,13,.72);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:18px; padding:14px 0;
+    }
+    .brand{display:flex; align-items:center; gap:12px; font-weight:900; letter-spacing:.3px}
+    .logo{
+      width:42px; height:42px; border-radius:14px;
+      background:
+        linear-gradient(135deg, rgba(96,239,255,.85), rgba(155,92,255,.9)),
+        repeating-linear-gradient(45deg, rgba(255,255,255,.18) 0 7px, transparent 7px 14px);
+      box-shadow:0 0 28px rgba(96,239,255,.24);
+      display:grid; place-items:center;
+      border:1px solid rgba(255,255,255,.25);
+    }
+    .logo:after{content:"✦"; font-size:23px; color:white; text-shadow:0 0 18px white}
+    .navlinks{display:flex; align-items:center; gap:9px; flex-wrap:wrap; justify-content:flex-end}
+    .navlinks a, .pillbtn{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.045);
+      color:var(--muted);
+      padding:10px 13px;
+      border-radius:999px;
+      font-size:14px;
+      transition:.18s transform,.18s border,.18s color,.18s background;
+      cursor:pointer;
+    }
+    .navlinks a:hover,.pillbtn:hover{transform:translateY(-1px); border-color:rgba(96,239,255,.65); color:var(--text); background:rgba(96,239,255,.08)}
+
+    .hero{padding:72px 0 38px; position:relative}
+    .hero-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:28px; align-items:center}
+    .tag{
+      display:inline-flex; align-items:center; gap:8px;
+      color:#061018; background:linear-gradient(90deg,var(--gold),#fff3b0);
+      border-radius:999px; padding:8px 12px; font-weight:900; font-size:13px;
+      box-shadow:0 14px 40px rgba(255,209,102,.16);
+    }
+    h1{font-size:clamp(42px,7vw,86px); line-height:.92; margin:22px 0 18px; letter-spacing:-3px}
+    .gradient-text{background:linear-gradient(90deg,#fff,var(--cyan),#d7b1ff,var(--gold)); -webkit-background-clip:text; color:transparent}
+    .lead{font-size:clamp(17px,2vw,21px); line-height:1.65; color:var(--muted); max-width:720px}
+    .actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:26px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      border:1px solid rgba(255,255,255,.2);
+      padding:14px 18px; border-radius:16px; font-weight:900;
+      background:linear-gradient(135deg,rgba(96,239,255,.2),rgba(155,92,255,.24));
+      box-shadow:var(--shadow); transition:.18s transform,.18s box-shadow;
+    }
+    .btn:hover{transform:translateY(-2px); box-shadow:0 26px 80px rgba(96,239,255,.18)}
+    .btn.primary{background:linear-gradient(135deg,var(--cyan),var(--purple)); color:#061018}
+
+    .artifact-card{
+      position:relative; min-height:405px; border-radius:var(--radius); overflow:hidden;
+      border:1px solid rgba(255,255,255,.16);
+      background:
+        linear-gradient(145deg, rgba(96,239,255,.12), transparent 35%),
+        linear-gradient(315deg, rgba(155,92,255,.18), transparent 38%),
+        var(--panel);
+      box-shadow:var(--shadow);
+      padding:24px;
+    }
+    .artifact-card:before{
+      content:""; position:absolute; inset:16px; border-radius:18px;
+      background:
+        linear-gradient(90deg, transparent 0 15%, rgba(96,239,255,.18) 15% 16%, transparent 16% 30%, rgba(255,209,102,.14) 30% 31%, transparent 31%),
+        linear-gradient(180deg, rgba(255,255,255,.05), transparent);
+      opacity:.65;
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .floating-item{
+      position:absolute; border-radius:18px; border:1px solid rgba(255,255,255,.16);
+      background:rgba(5,8,14,.7); backdrop-filter:blur(10px);
+      box-shadow:0 18px 50px rgba(0,0,0,.35);
+      padding:14px;
+      animation:float 4.5s ease-in-out infinite;
+    }
+    .floating-item strong{display:block; font-size:15px}.floating-item span{font-size:12px; color:var(--muted)}
+    .fi1{left:34px; top:46px}.fi2{right:34px; top:92px; animation-delay:.5s}.fi3{left:82px; bottom:70px; animation-delay:1s}.fi4{right:64px; bottom:40px; animation-delay:1.4s}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+
+    .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:34px 0 10px}
+    .stat{background:rgba(255,255,255,.045); border:1px solid var(--line); border-radius:18px; padding:18px}
+    .stat b{font-size:26px}.stat span{display:block;color:var(--muted); margin-top:4px; font-size:13px}
+
+    section{padding:36px 0}
+    .section-title{display:flex; align-items:end; justify-content:space-between; gap:14px; margin-bottom:18px}
+    h2{font-size:clamp(28px,4vw,44px); margin:0; letter-spacing:-1px}.section-title p{color:var(--muted); margin:0; max-width:620px; line-height:1.5}
+
+    .toolbar{
+      display:grid; grid-template-columns:1fr auto; gap:14px; align-items:center;
+      background:var(--panel2); border:1px solid var(--line); border-radius:22px; padding:14px; margin-bottom:18px;
+    }
+    .search{width:100%; color:var(--text); background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:16px; padding:14px 16px; outline:none; font-size:15px}
+    .tabs{display:flex; flex-wrap:wrap; gap:8px; justify-content:flex-end}
+    .tab{border:1px solid var(--line); color:var(--muted); background:rgba(255,255,255,.04); border-radius:999px; padding:11px 13px; cursor:pointer; font-weight:800}
+    .tab.active{color:#061018; background:linear-gradient(90deg,var(--cyan),var(--gold)); border-color:transparent}
+
+    .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .card{
+      position:relative; min-height:250px; display:flex; flex-direction:column; gap:12px;
+      background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.035));
+      border:1px solid rgba(255,255,255,.14); border-radius:22px; padding:18px; overflow:hidden; box-shadow:0 18px 60px rgba(0,0,0,.22);
+    }
+    .card:before{content:""; position:absolute; inset:-1px; background:radial-gradient(circle at 22% 0%, rgba(96,239,255,.16), transparent 36%), radial-gradient(circle at 90% 20%, rgba(255,209,102,.12), transparent 30%); pointer-events:none}
+    .card > *{position:relative; z-index:1}
+    .card-head{display:flex; gap:12px; align-items:center}
+    .icon{width:54px; height:54px; border-radius:16px; display:grid; place-items:center; background:rgba(0,0,0,.28); border:1px solid rgba(255,255,255,.14); font-size:26px}
+    .card h3{margin:0; font-size:20px}.meta{display:flex; flex-wrap:wrap; gap:7px; color:var(--muted); font-size:12px}
+    .badge{border:1px solid rgba(255,255,255,.18); border-radius:999px; padding:5px 8px; background:rgba(0,0,0,.2)}
+    .rarity-legendary{color:var(--gold)}.rarity-epic{color:#cba6ff}.rarity-rare{color:#7ee7ff}.rarity-common{color:#c8d1db}
+    .desc{color:var(--muted); line-height:1.5; flex:1}.card-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:auto}
+    .download{background:linear-gradient(135deg,var(--gold),#ff9d4d); color:#160d05; border:0; padding:12px 14px; border-radius:14px; font-weight:950}.ghost{border:1px solid var(--line); color:var(--text); background:rgba(255,255,255,.06); padding:12px 14px; border-radius:14px; font-weight:850}
+    .empty{grid-column:1/-1; padding:30px; border:1px dashed rgba(255,255,255,.22); border-radius:22px; color:var(--muted); text-align:center; background:rgba(255,255,255,.035)}
+
+    .guide{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}.step{background:var(--panel); border:1px solid var(--line); border-radius:22px; padding:20px}.step b{font-size:30px; color:var(--cyan)}.step p{color:var(--muted); line-height:1.55}
+    footer{padding:42px 0; color:var(--muted); border-top:1px solid var(--line); margin-top:28px}
+
+    @media (max-width:900px){.hero-grid{grid-template-columns:1fr}.grid,.guide{grid-template-columns:1fr 1fr}.toolbar{grid-template-columns:1fr}.tabs{justify-content:flex-start}.stats{grid-template-columns:1fr 1fr}}
+    @media (max-width:580px){.grid,.guide,.stats{grid-template-columns:1fr}.nav{align-items:flex-start; flex-direction:column}h1{letter-spacing:-1.5px}.hero{padding-top:42px}.artifact-card{min-height:280px}.floating-item{position:relative; inset:auto!important; margin:8px 0; animation:none}}
+  </style>
 </head>
 <body>
-  <div class="noise"></div>
-  <header class="hero">
-    <nav class="nav">
-      <div class="brand"><span class="cube"></span> Extroxter RPG Vault</div>
-      <div class="navlinks">
-        <a href="#mods">Mody</a>
-        <a href="#textures">Textury</a>
-        <a href="#shaders">Shadery</a>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#top"><span class="logo"></span><span>Extroxter RPG Vault</span></a>
+      <nav class="navlinks">
+        <a href="#downloads">Downloads</a>
+        <a href="#how">Jak přidat</a>
         <a href="admin.html">Admin generator</a>
-      </div>
-    </nav>
-    <section class="hero-content">
-      <p class="eyebrow">Minecraft RPG-like download stránka</p>
-      <h1>Tvoje mody, texture packy a shadery na jednom odkazu.</h1>
-      <p class="lead">Nahraj soubory do složky <b>downloads</b>, uprav <b>downloads/manifest.json</b> a každý, kdo zná odkaz, si je může stáhnout.</p>
-      <div class="hero-actions">
-        <a class="btn primary" href="#downloads">Zobrazit downloady</a>
-        <a class="btn ghost" href="README_SITE.txt">Jak přidat soubory</a>
-      </div>
-    </section>
+      </nav>
+    </div>
   </header>
 
-  <main id="downloads" class="wrap">
-    <section class="toolbar">
-      <div>
-        <h2>Download Vault</h2>
-        <p>Filtruj podle kategorií nebo hledej konkrétní pack.</p>
+  <main id="top">
+    <section class="hero wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="tag">⚔ Minecraft RPG • TBOI Repentance • Mods Vault</span>
+          <h1>Tvoje <span class="gradient-text">mody, textury a shadery</span> na jednom odkazu.</h1>
+          <p class="lead">Vlastní download stránka pro tvoje projekty. Můžeš tu mít Minecraft mody, texture packy, shadery a taky The Binding of Isaac: Repentance mody.</p>
+          <div class="actions">
+            <a class="btn primary" href="#downloads">⬇ Zobrazit downloady</a>
+            <a class="btn" href="#how">✚ Jak přidat soubor</a>
+          </div>
+          <div class="stats">
+            <div class="stat"><b id="countMods">0</b><span>Minecraft modů</span></div>
+            <div class="stat"><b id="countTextures">0</b><span>Texture packů</span></div>
+            <div class="stat"><b id="countShaders">0</b><span>Shaderů</span></div>
+            <div class="stat"><b id="countTboi">0</b><span>TBOI modů</span></div>
+          </div>
+        </div>
+        <div class="artifact-card" aria-label="RPG preview">
+          <div class="floating-item fi1"><strong>⚔ Devourer Ascension</strong><span>Forge RPG mod</span></div>
+          <div class="floating-item fi2"><strong>🌌 Low PC Shader</strong><span>Cinematic visuals</span></div>
+          <div class="floating-item fi3"><strong>🧱 RPG Texture Pack</strong><span>Dark fantasy style</span></div>
+          <div class="floating-item fi4"><strong>👁 Isaac Mod</strong><span>Repentance addon</span></div>
+        </div>
       </div>
-      <input id="search" type="search" placeholder="Hledat mod, shader, texture pack..." />
     </section>
 
-    <section class="filters">
-      <button class="filter active" data-filter="all">Vše</button>
-      <button class="filter" data-filter="mod">Mody</button>
-      <button class="filter" data-filter="texture">Textury</button>
-      <button class="filter" data-filter="shader">Shadery</button>
+    <section id="downloads" class="wrap">
+      <div class="section-title">
+        <div><h2>Download Vault</h2><p>Filtruj podle hry a typu. Všechno se načítá z <b>downloads/manifest.json</b>.</p></div>
+      </div>
+      <div class="toolbar">
+        <input id="search" class="search" placeholder="Hledat mod, shader, texture pack, TBOI..." />
+        <div class="tabs" id="tabs"></div>
+      </div>
+      <div id="cards" class="grid"></div>
     </section>
 
-    <section id="grid" class="grid"></section>
-
-    <section class="empty" id="empty" hidden>
-      <h3>Nic nenalezeno</h3>
-      <p>Zkus jiný název nebo uprav manifest.</p>
+    <section id="how" class="wrap">
+      <div class="section-title"><div><h2>Jak přidat nové věci</h2><p>Nejlepší postup: velké soubory nahraj do GitHub Releases a do manifestu vlož download link.</p></div></div>
+      <div class="guide">
+        <div class="step"><b>1</b><h3>Nahraj soubor</h3><p>V GitHubu otevři <b>Releases → Create a new release</b> a nahraj .jar nebo .zip.</p></div>
+        <div class="step"><b>2</b><h3>Zkopíruj link</h3><p>Klikni pravým na asset soubor a dej <b>Copy link address</b>.</p></div>
+        <div class="step"><b>3</b><h3>Uprav manifest</h3><p>Vlož item do <b>downloads/manifest.json</b>. Pak stránka automaticky ukáže novou kartu.</p></div>
+      </div>
     </section>
   </main>
 
   <footer>
-    <span>Extroxter RPG Vault</span>
-    <span>Static site • GitHub Pages / Netlify / Vercel ready</span>
+    <div class="wrap">Extroxter RPG Vault • Minecraft / TBOI download site • GitHub Pages ready</div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    const fallback = {
+      items: [
+        {name:'Devourer Ascension', game:'minecraft', type:'mod', version:'0.5.16', rarity:'legendary', icon:'⚔', loader:'Forge 1.20.1', description:'RPG mod with weapons, abilities, fusion and predation system.', file:'#'},
+        {name:'Example RPG Texture Pack', game:'minecraft', type:'texture', version:'1.0', rarity:'epic', icon:'🧱', loader:'Resource Pack', description:'Dark fantasy Minecraft texture pack example.', file:'#'},
+        {name:'Example Low PC Shader', game:'minecraft', type:'shader', version:'1.0', rarity:'rare', icon:'🌌', loader:'Oculus/Iris', description:'Low PC shader placeholder. Replace this with your shader ZIP.', file:'#'},
+        {name:'Isaac Drop After Kill', game:'tboi', type:'mod', version:'1.0', rarity:'legendary', icon:'👁', loader:'Repentogon', description:'The Binding of Isaac: Repentance mod example.', file:'#'}
+      ]
+    };
+    const filters = [
+      ['all','Vše'], ['minecraft','Minecraft vše'], ['minecraft:mod','MC mody'], ['minecraft:texture','MC textury'], ['minecraft:shader','MC shadery'], ['tboi','TBOI vše'], ['tboi:mod','TBOI mody']
+    ];
+    let state = {filter:'all', q:'', items:[]};
+
+    function normalize(data){
+      if(Array.isArray(data.items)) return data.items;
+      const out=[];
+      (data.mods||[]).forEach(x=>out.push({...x, game:x.game||'minecraft', type:x.type||'mod', icon:x.icon||'⚔'}));
+      (data.textures||[]).forEach(x=>out.push({...x, game:x.game||'minecraft', type:x.type||'texture', icon:x.icon||'🧱'}));
+      (data.shaders||[]).forEach(x=>out.push({...x, game:x.game||'minecraft', type:x.type||'shader', icon:x.icon||'🌌'}));
+      (data.tboiMods||[]).forEach(x=>out.push({...x, game:'tboi', type:'mod', icon:x.icon||'👁'}));
+      return out;
+    }
+    function label(item){
+      const game = item.game === 'tboi' ? 'TBOI Repentance' : 'Minecraft';
+      const typeMap = {mod:'Mod', texture:'Texture Pack', shader:'Shader'};
+      return `${game} • ${typeMap[item.type]||item.type}`;
+    }
+    function matches(item){
+      const f=state.filter;
+      const text = `${item.name} ${item.description||''} ${item.version||''} ${item.loader||''} ${item.game||''} ${item.type||''}`.toLowerCase();
+      if(state.q && !text.includes(state.q.toLowerCase())) return false;
+      if(f==='all') return true;
+      if(f.includes(':')){ const [g,t]=f.split(':'); return item.game===g && item.type===t; }
+      return item.game===f;
+    }
+    function renderTabs(){
+      const el=document.getElementById('tabs');
+      el.innerHTML='';
+      filters.forEach(([id,name])=>{
+        const b=document.createElement('button');
+        b.className='tab'+(state.filter===id?' active':'');
+        b.textContent=name;
+        b.onclick=()=>{state.filter=id; render();};
+        el.appendChild(b);
+      });
+    }
+    function renderCounts(){
+      document.getElementById('countMods').textContent=state.items.filter(i=>i.game==='minecraft'&&i.type==='mod').length;
+      document.getElementById('countTextures').textContent=state.items.filter(i=>i.game==='minecraft'&&i.type==='texture').length;
+      document.getElementById('countShaders').textContent=state.items.filter(i=>i.game==='minecraft'&&i.type==='shader').length;
+      document.getElementById('countTboi').textContent=state.items.filter(i=>i.game==='tboi').length;
+    }
+    function renderCards(){
+      const cards=document.getElementById('cards');
+      const list=state.items.filter(matches);
+      cards.innerHTML='';
+      if(!list.length){cards.innerHTML='<div class="empty">Nic tu zatím není. Přidej položku do downloads/manifest.json.</div>'; return;}
+      list.forEach(item=>{
+        const card=document.createElement('article');
+        const rarity=(item.rarity||'common').toLowerCase();
+        card.className='card';
+        card.innerHTML=`
+          <div class="card-head">
+            <div class="icon">${item.icon||'📦'}</div>
+            <div><h3>${item.name}</h3><div class="meta"><span class="badge">${label(item)}</span><span class="badge">v${item.version||'?'}</span>${item.loader?`<span class="badge">${item.loader}</span>`:''}<span class="badge rarity-${rarity}">${rarity}</span></div></div>
+          </div>
+          <p class="desc">${item.description||'Bez popisu.'}</p>
+          <div class="card-actions">
+            <a class="download" href="${item.file||'#'}" ${item.file && item.file !== '#' ? 'download' : ''}>⬇ Stáhnout</a>
+            ${item.info ? `<a class="ghost" href="${item.info}">Info</a>` : ''}
+          </div>`;
+        cards.appendChild(card);
+      });
+    }
+    function render(){renderTabs(); renderCounts(); renderCards();}
+
+    document.getElementById('search').addEventListener('input', e=>{state.q=e.target.value; render();});
+    fetch('downloads/manifest.json', {cache:'no-store'})
+      .then(r=>r.ok?r.json():fallback)
+      .then(data=>{state.items=normalize(data); if(!state.items.length) state.items=normalize(fallback); render();})
+      .catch(()=>{state.items=normalize(fallback); render();});
+  </script>
 </body>
 </html>
