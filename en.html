@@ -184,8 +184,10 @@
       <a class="brand" href="#top"><span class="logo"></span><span>Extroxter RPG Vault</span></a>
       <nav class="navlinks">
         <a href="#downloads">Downloads</a>
-        <a href="#how">Jak přidat</a>
+        <a href="#how">How to add</a>
         <a href="admin.html">Admin generator</a>
+        <a href="index.html">CZ</a>
+        <a href="en.html">EN</a>
       </nav>
     </div>
   </header>
@@ -195,17 +197,17 @@
       <div class="hero-grid">
         <div>
           <span class="tag">⚔ Minecraft RPG • TBOI Repentance • Mods Vault</span>
-          <h1>Tvoje <span class="gradient-text">mody, textury a shadery</span> na jednom odkazu.</h1>
-          <p class="lead">Vlastní download stránka pro tvoje projekty. Můžeš tu mít Minecraft mody, texture packy, shadery a taky The Binding of Isaac: Repentance mody.</p>
+          <h1>Your <span class="gradient-text">mods, texture packs and shaders</span> in one link.</h1>
+          <p class="lead">A custom download page for your projects. You can host Minecraft mods, texture packs, shaders, and The Binding of Isaac: Repentance mods here.</p>
           <div class="actions">
-            <a class="btn primary" href="#downloads">⬇ Zobrazit downloady</a>
-            <a class="btn" href="#how">✚ Jak přidat soubor</a>
+            <a class="btn primary" href="#downloads">⬇ Show downloads</a>
+            <a class="btn" href="#how">✚ How to add soubor</a>
           </div>
           <div class="stats">
-            <div class="stat"><b id="countMods">0</b><span>Minecraft modů</span></div>
-            <div class="stat"><b id="countTextures">0</b><span>Texture packů</span></div>
-            <div class="stat"><b id="countShaders">0</b><span>Shaderů</span></div>
-            <div class="stat"><b id="countTboi">0</b><span>TBOI modů</span></div>
+            <div class="stat"><b id="countMods">0</b><span>Minecraft mods</span></div>
+            <div class="stat"><b id="countTextures">0</b><span>Texture packs</span></div>
+            <div class="stat"><b id="countShaders">0</b><span>Shaders</span></div>
+            <div class="stat"><b id="countTboi">0</b><span>TBOI mods</span></div>
           </div>
         </div>
         <div class="artifact-card" aria-label="RPG preview">
@@ -219,21 +221,21 @@
 
     <section id="downloads" class="wrap">
       <div class="section-title">
-        <div><h2>Download Vault</h2><p>Filtruj podle hry a typu. Všechno se načítá z <b>downloads/manifest.json</b>.</p></div>
+        <div><h2>Download Vault</h2><p>Filter by game and type. Everything loads from <b>downloads/manifest.json</b>.</p></div>
       </div>
       <div class="toolbar">
-        <input id="search" class="search" placeholder="Hledat mod, shader, texture pack, TBOI..." />
+        <input id="search" class="search" placeholder="Search mod, shader, texture pack, TBOI..." />
         <div class="tabs" id="tabs"></div>
       </div>
       <div id="cards" class="grid"></div>
     </section>
 
     <section id="how" class="wrap">
-      <div class="section-title"><div><h2>Jak přidat nové věci</h2><p>Nejlepší postup: velké soubory nahraj do GitHub Releases a do manifestu vlož download link.</p></div></div>
+      <div class="section-title"><div><h2>How to add nové věci</h2><p>Best method: upload big files to GitHub Releases and put the download link into the manifest.</p></div></div>
       <div class="guide">
-        <div class="step"><b>1</b><h3>Nahraj soubor</h3><p>V GitHubu otevři <b>Releases → Create a new release</b> a nahraj .jar nebo .zip.</p></div>
-        <div class="step"><b>2</b><h3>Zkopíruj link</h3><p>Klikni pravým na asset soubor a dej <b>Copy link address</b>.</p></div>
-        <div class="step"><b>3</b><h3>Uprav manifest</h3><p>Vlož item do <b>downloads/manifest.json</b>. Pak stránka automaticky ukáže novou kartu.</p></div>
+        <div class="step"><b>1</b><h3>Upload file</h3><p>On GitHub open <b>Releases → Create a new release</b> and upload the .jar or .zip file.</p></div>
+        <div class="step"><b>2</b><h3>Copy the link</h3><p>Right-click the asset file and choose <b>Copy link address</b>.</p></div>
+        <div class="step"><b>3</b><h3>Edit manifest</h3><p>Add the item into <b>downloads/manifest.json</b>. The site will automatically show a new card.</p></div>
       </div>
     </section>
   </main>
@@ -252,7 +254,7 @@
       ]
     };
     const filters = [
-      ['all','Vše'], ['minecraft','Minecraft vše'], ['minecraft:mod','MC mody'], ['minecraft:texture','MC textury'], ['minecraft:shader','MC shadery'], ['tboi','TBOI vše'], ['tboi:mod','TBOI mody']
+      ['all','All'], ['minecraft','All Minecraft'], ['minecraft:mod','MC Mods'], ['minecraft:texture','MC Textures'], ['minecraft:shader','MC Shaders'], ['tboi','All TBOI'], ['tboi:mod','TBOI Mods']
     ];
     let state = {filter:'all', q:'', items:[]};
 
@@ -299,7 +301,7 @@
       const cards=document.getElementById('cards');
       const list=state.items.filter(matches);
       cards.innerHTML='';
-      if(!list.length){cards.innerHTML='<div class="empty">Nic tu zatím není. Přidej položku do downloads/manifest.json.</div>'; return;}
+      if(!list.length){cards.innerHTML='<div class="empty">Nothing here yet. Add an item to downloads/manifest.json.</div>'; return;}
       list.forEach(item=>{
         const card=document.createElement('article');
         const rarity=(item.rarity||'common').toLowerCase();
@@ -309,9 +311,9 @@
             <div class="icon">${item.icon||'📦'}</div>
             <div><h3>${item.name}</h3><div class="meta"><span class="badge">${label(item)}</span><span class="badge">v${item.version||'?'}</span>${item.loader?`<span class="badge">${item.loader}</span>`:''}<span class="badge rarity-${rarity}">${rarity}</span></div></div>
           </div>
-          <p class="desc">${item.description||'Bez popisu.'}</p>
+          <p class="desc">${item.description||'No description.'}</p>
           <div class="card-actions">
-            <a class="download" href="${item.file||'#'}" ${item.file && item.file !== '#' ? 'download' : ''}>⬇ Stáhnout</a>
+            <a class="download" href="${item.file||'#'}" ${item.file && item.file !== '#' ? 'download' : ''}>⬇ Download</a>
             ${item.info ? `<a class="ghost" href="${item.info}">Info</a>` : ''}
           </div>`;
         cards.appendChild(card);
@@ -325,9 +327,5 @@
       .then(data=>{state.items=normalize(data); if(!state.items.length) state.items=normalize(fallback); render();})
       .catch(()=>{state.items=normalize(fallback); render();});
   </script>
-  <div style="position:fixed;top:18px;right:18px;z-index:99999;display:flex;gap:8px;">
-  <a href="index.html" style="padding:9px 14px;border-radius:999px;background:linear-gradient(135deg,#77ffe1,#ffe66d);color:#071018;text-decoration:none;font-weight:900;">CZ</a>
-  <a href="en.html" style="padding:9px 14px;border-radius:999px;background:rgba(10,18,32,.9);color:#eaf6ff;border:1px solid rgba(135,205,255,.45);text-decoration:none;font-weight:900;">EN</a>
-</div>
 </body>
 </html>

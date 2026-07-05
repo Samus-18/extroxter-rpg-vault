@@ -186,6 +186,8 @@
         <a href="#downloads">Downloads</a>
         <a href="#how">Jak přidat</a>
         <a href="admin.html">Admin generator</a>
+        <a href="index.html">CZ</a>
+        <a href="en.html">EN</a>
       </nav>
     </div>
   </header>
@@ -325,9 +327,5 @@
       .then(data=>{state.items=normalize(data); if(!state.items.length) state.items=normalize(fallback); render();})
       .catch(()=>{state.items=normalize(fallback); render();});
   </script>
-  <div style="position:fixed;top:18px;right:18px;z-index:99999;display:flex;gap:8px;">
-  <a href="index.html" style="padding:9px 14px;border-radius:999px;background:linear-gradient(135deg,#77ffe1,#ffe66d);color:#071018;text-decoration:none;font-weight:900;">CZ</a>
-  <a href="en.html" style="padding:9px 14px;border-radius:999px;background:rgba(10,18,32,.9);color:#eaf6ff;border:1px solid rgba(135,205,255,.45);text-decoration:none;font-weight:900;">EN</a>
-</div>
 </body>
 </html>
