@@ -6,21 +6,76 @@
       "type": "mod",
       "version": "0.5.16",
       "rarity": "legendary",
-      "icon": "⚔",
+      "icon": "⚔️",
       "loader": "Forge 1.20.1",
-      "description": "Minecraft RPG mod with weapons, abilities, fusion and progression.",
-      "file": "#"
+      "description": "Dark RPG Minecraft mod with custom weapons, abilities, passives, fusion progression, Devourer energy and combat-focused gameplay.",
+      "file": "https://github.com/Samus-18/extroxter-rpg-vault/releases/download/v1.0/devourer_ascension-0.5.16.jar"
     },
     {
-      "name": "Isaac Drop After Kill",
+      "name": "Tomebound Ascension",
+      "game": "minecraft",
+      "type": "mod",
+      "version": "1.2.40",
+      "rarity": "mythic",
+      "icon": "📖",
+      "loader": "Forge 1.20.1",
+      "description": "Magic RPG spellbook mod focused on tomes, upgrades, progression, abilities and fantasy combat.",
+      "file": "https://github.com/Samus-18/extroxter-rpg-vault/releases/download/v1.0/tomebound_ascension-1.2.40.jar"
+    },
+    {
+      "name": "AetherLuma Cinematic: Cosmic End",
+      "game": "minecraft",
+      "type": "shader",
+      "version": "V3",
+      "rarity": "mythic",
+      "icon": "🌌",
+      "loader": "Oculus / Forge 1.20.1",
+      "description": "Cinematic Minecraft shader pack with cosmic fantasy colors, stronger atmosphere, glowing visuals and RPG-like mood.",
+      "file": "https://github.com/Samus-18/extroxter-rpg-vault/releases/download/v1.0/AetherLuma_Cinematic_Oculus_1.20.1_COSMIC_END_V3.zip"
+    },
+    {
+      "name": "AetherLuma Lite: Low PC",
+      "game": "minecraft",
+      "type": "shader",
+      "version": "1.20.1",
+      "rarity": "rare",
+      "icon": "✨",
+      "loader": "Oculus / Forge 1.20.1",
+      "description": "Performance-friendly shader pack made for lower-end PCs while keeping a fantasy Minecraft look.",
+      "file": "https://github.com/Samus-18/extroxter-rpg-vault/releases/download/v1.0/AetherLuma_Lite_Oculus_1.20.1_LOW_PC.zip"
+    },
+    {
+      "name": "Enemy Trinket Loot Capped",
       "game": "tboi",
       "type": "mod",
       "version": "1.0",
       "rarity": "epic",
-      "icon": "👁",
-      "loader": "Repentogon / Repentance+",
-      "description": "The Binding of Isaac mod with enemy/boss drops.",
-      "file": "#"
+      "icon": "🎲",
+      "loader": "The Binding of Isaac: Repentance / Repentogon",
+      "description": "Isaac mod that adds capped trinket and loot drops from enemies, champions and bosses for a more rewarding run progression.",
+      "file": "https://github.com/Samus-18/extroxter-rpg-vault/releases/download/v1.0/Enemy_Trinket_Loot_Capped.zip"
+    },
+    {
+      "name": "Isaac Performance Helper",
+      "game": "tboi",
+      "type": "mod",
+      "version": "1.0",
+      "rarity": "rare",
+      "icon": "⚙️",
+      "loader": "The Binding of Isaac: Repentance / Repentogon",
+      "description": "Small helper mod for The Binding of Isaac focused on smoother gameplay, useful fixes and performance-friendly behavior.",
+      "file": "https://github.com/Samus-18/extroxter-rpg-vault/releases/download/v1.0/Isaac_Performance_Helper.zip"
+    },
+    {
+      "name": "Universal Completion Board",
+      "game": "tboi",
+      "type": "mod",
+      "version": "SteamReady",
+      "rarity": "legendary",
+      "icon": "🏆",
+      "loader": "The Binding of Isaac: Repentance / Steam Workshop Ready",
+      "description": "Universal completion board mod prepared for Steam upload, made to track and display completion progress clearly.",
+      "file": "https://github.com/Samus-18/extroxter-rpg-vault/releases/download/v1.0/Universal_Completion_Board_SteamReady.zip"
     }
   ]
 }
