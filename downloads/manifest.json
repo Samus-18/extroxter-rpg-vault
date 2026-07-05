@@ -1,5 +1,26 @@
 {
-  "mods": [],
-  "textures": [],
-  "shaders": []
+  "items": [
+    {
+      "name": "Devourer Ascension",
+      "game": "minecraft",
+      "type": "mod",
+      "version": "0.5.16",
+      "rarity": "legendary",
+      "icon": "⚔",
+      "loader": "Forge 1.20.1",
+      "description": "Minecraft RPG mod with weapons, abilities, fusion and progression.",
+      "file": "#"
+    },
+    {
+      "name": "Isaac Drop After Kill",
+      "game": "tboi",
+      "type": "mod",
+      "version": "1.0",
+      "rarity": "epic",
+      "icon": "👁",
+      "loader": "Repentogon / Repentance+",
+      "description": "The Binding of Isaac mod with enemy/boss drops.",
+      "file": "#"
+    }
+  ]
 }
