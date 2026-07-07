@@ -13,17 +13,17 @@
       "file": "https://github.com/Samus-18/extroxter-rpg-vault/releases/download/v1.0/devourer_ascension-0.5.16.jar"
     },
     {
-      "name": "Tomebound Ascension",
-      "game": "minecraft",
-      "type": "mod",
-      "version": "1.2.40",
-      "status": "Finished",
-      "rarity": "mythic",
-      "icon": "📖",
-      "loader": "Forge 1.20.1 • Finished",
-      "description": "-Finished- Magic RPG spellbook mod focused on tomes, upgrades, progression, abilities and fantasy combat.",
-      "file": "https://github.com/Samus-18/extroxter-rpg-vault/releases/download/v1.0/tomebound_ascension-1.2.40.jar"
-    },
+  "name": "Tomebound Ascension",
+  "game": "minecraft",
+  "type": "mod",
+  "version": "1.2.47",
+  "status": "Finished",
+  "rarity": "mythic",
+  "icon": "📖",
+  "loader": "Forge 1.20.1 • Finished",
+  "description": "-Finished- Magic RPG spellbook mod focused on tomes, upgrades, progression, abilities, Czech/English language support, better tooltips and fantasy combat.",
+  "file": "https://samus-18.github.io/extroxter-rpg-vault/downloads/tomebound_ascension-1.2.47.jar"
+},
     {
       "name": "AetherLuma Cinematic: Cosmic End",
       "game": "minecraft",
