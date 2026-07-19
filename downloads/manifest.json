@@ -84,5 +84,18 @@
       "description": "-Finished- Universal completion board mod prepared for Steam upload, made to track and display completion progress clearly.",
       "file": "https://github.com/Samus-18/extroxter-rpg-vault/releases/download/v1.0/Universal_Completion_Board_SteamReady.zip"
     }
+  {
+  "name": "Glyphbound: Arcane Legacy",
+  "version": "3.12.3",
+  "status": "Not Finished",
+  "loader": "Forge 1.20.1",
+  "description": "Large-scale glyph magic RPG mod inspired by magical fantasy. Includes spell classes, glyph fusion, forbidden techniques, structures, elite mobs, curios, configurable VFX and volumetric light effects.",
+  "download": "downloads/glyphbound_arcane_legacy-3.12.3.jar",
+  "dependencies": [
+    "GeckoLib 4.4.9+",
+    "Curios API 5.14.1+"
+  ],
+  "optional_dependencies": [
+    "Loot Integrations 3.7+"
   ]
 }
