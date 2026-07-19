@@ -13,17 +13,29 @@
       "file": "https://github.com/Samus-18/extroxter-rpg-vault/releases/download/v1.0/devourer_ascension-0.5.16.jar"
     },
     {
-  "name": "Tomebound Ascension",
-  "game": "minecraft",
-  "type": "mod",
-  "version": "1.2.47",
-  "status": "Finished",
-  "rarity": "mythic",
-  "icon": "📖",
-  "loader": "Forge 1.20.1 • Finished",
-  "description": "-Finished- Magic RPG spellbook mod focused on tomes, upgrades, progression, abilities, Czech/English language support, better tooltips and fantasy combat.",
-  "file": "https://samus-18.github.io/extroxter-rpg-vault/downloads/tomebound_ascension-1.2.47.jar"
-},
+      "name": "Tomebound Ascension",
+      "game": "minecraft",
+      "type": "mod",
+      "version": "1.2.47",
+      "status": "Finished",
+      "rarity": "mythic",
+      "icon": "📖",
+      "loader": "Forge 1.20.1 • Finished",
+      "description": "-Finished- Magic RPG spellbook mod focused on tomes, upgrades, progression, abilities, Czech/English language support, better tooltips and fantasy combat.",
+      "file": "https://samus-18.github.io/extroxter-rpg-vault/downloads/tomebound_ascension-1.2.47.jar"
+    },
+    {
+      "name": "Glyphbound: Arcane Legacy",
+      "game": "minecraft",
+      "type": "mod",
+      "version": "3.12.3",
+      "status": "Not Finished",
+      "rarity": "mythic",
+      "icon": "🔮",
+      "loader": "Forge 1.20.1 • Not Finished",
+      "description": "-Not Finished- Large-scale glyph magic RPG mod featuring spell classes, glyph fusion, forbidden techniques, elite mobs, magical structures, configurable VFX, volumetric light effects and fantasy progression.",
+      "file": "https://samus-18.github.io/extroxter-rpg-vault/downloads/glyphbound_arcane_legacy-3.12.3.jar"
+    },
     {
       "name": "AetherLuma Cinematic: Cosmic End",
       "game": "minecraft",
@@ -84,18 +96,5 @@
       "description": "-Finished- Universal completion board mod prepared for Steam upload, made to track and display completion progress clearly.",
       "file": "https://github.com/Samus-18/extroxter-rpg-vault/releases/download/v1.0/Universal_Completion_Board_SteamReady.zip"
     }
-  {
-  "name": "Glyphbound: Arcane Legacy",
-  "version": "3.12.3",
-  "status": "Not Finished",
-  "loader": "Forge 1.20.1",
-  "description": "Large-scale glyph magic RPG mod inspired by magical fantasy. Includes spell classes, glyph fusion, forbidden techniques, structures, elite mobs, curios, configurable VFX and volumetric light effects.",
-  "download": "downloads/glyphbound_arcane_legacy-3.12.3.jar",
-  "dependencies": [
-    "GeckoLib 4.4.9+",
-    "Curios API 5.14.1+"
-  ],
-  "optional_dependencies": [
-    "Loot Integrations 3.7+"
   ]
 }
