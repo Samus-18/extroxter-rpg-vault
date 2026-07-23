@@ -1,100 +1,204 @@
 {
   "items": [
     {
+      "id": "devourer-ascension",
       "name": "Devourer Ascension",
       "game": "minecraft",
       "type": "mod",
-      "version": "0.5.16",
       "status": "Not Finished",
       "rarity": "legendary",
       "icon": "⚔️",
-      "loader": "Forge 1.20.1 • Not Finished",
-      "description": "-Not Finished- Dark RPG Minecraft mod with custom weapons, abilities, passives, fusion progression, Devourer energy and combat-focused gameplay. This mod is still being worked on and may contain unfinished features or bugs.",
-      "file": "https://github.com/Samus-18/extroxter-rpg-vault/releases/download/v1.0/devourer_ascension-0.5.16.jar"
+      "description_cs": "Nedokončený temný RPG mod s vlastními zbraněmi, schopnostmi, pasivy, fúzemi, Devourer energií a bojovým postupem.",
+      "description_en": "Unfinished dark RPG mod with custom weapons, abilities, passives, fusion progression, Devourer energy and combat-focused gameplay.",
+      "versions": [
+        {
+          "gameVersion": "Minecraft 1.20.1",
+          "loader": "Forge",
+          "release": "0.5.16",
+          "status": "Not Finished",
+          "recommended": true,
+          "available": true,
+          "file": "https://github.com/Samus-18/extroxter-rpg-vault/releases/download/v1.0/devourer_ascension-0.5.16.jar"
+        }
+      ]
     },
     {
+      "id": "tomebound-ascension",
       "name": "Tomebound Ascension",
       "game": "minecraft",
       "type": "mod",
-      "version": "1.2.47",
       "status": "Finished",
       "rarity": "mythic",
       "icon": "📖",
-      "loader": "Forge 1.20.1 • Finished",
-      "description": "-Finished- Magic RPG spellbook mod focused on tomes, upgrades, progression, abilities, Czech/English language support, better tooltips and fantasy combat.",
-      "file": "https://samus-18.github.io/extroxter-rpg-vault/downloads/tomebound_ascension-1.2.47.jar"
+      "description_cs": "Dokončený magický RPG mod zaměřený na tomy, upgrady, postup, schopnosti, českou a anglickou lokalizaci a fantasy boj.",
+      "description_en": "Finished magic RPG mod focused on tomes, upgrades, progression, abilities, Czech and English localization and fantasy combat.",
+      "versions": [
+        {
+          "gameVersion": "Minecraft 1.20.1",
+          "loader": "Forge",
+          "release": "1.2.47",
+          "status": "Finished",
+          "recommended": true,
+          "available": true,
+          "file": "https://samus-18.github.io/extroxter-rpg-vault/downloads/tomebound_ascension-1.2.47.jar"
+        }
+      ]
     },
     {
+      "id": "glyphbound-arcane-legacy",
       "name": "Glyphbound: Arcane Legacy",
       "game": "minecraft",
       "type": "mod",
-      "version": "3.12.3",
       "status": "Not Finished",
       "rarity": "mythic",
       "icon": "🔮",
-      "loader": "Forge 1.20.1 • Not Finished",
-      "description": "-Not Finished- Large-scale glyph magic RPG mod featuring spell classes, glyph fusion, forbidden techniques, elite mobs, magical structures, configurable VFX, volumetric light effects and fantasy progression.",
-      "file": "https://samus-18.github.io/extroxter-rpg-vault/downloads/glyphbound_arcane_legacy-3.12.3.jar"
+      "description_cs": "Rozsáhlý RPG mod s glyphovou magií, třídami kouzel, fúzí glyphů, zakázanými technikami, elitními nepřáteli, strukturami, VFX a hlubokým postupem.",
+      "description_en": "Large-scale glyph magic RPG mod with spell classes, glyph fusion, forbidden techniques, elite enemies, structures, VFX and deep progression.",
+      "versions": [
+        {
+          "gameVersion": "Minecraft 1.20.1",
+          "loader": "Forge 47.x",
+          "release": "3.12.3",
+          "status": "Not Finished",
+          "recommended": true,
+          "available": true,
+          "file": "https://samus-18.github.io/extroxter-rpg-vault/downloads/glyphbound_arcane_legacy-3.12.3.jar"
+        },
+        {
+          "gameVersion": "Minecraft 1.20.1",
+          "loader": "Forge 47.x",
+          "release": "3.30.0 progression update",
+          "status": "Planned",
+          "available": false,
+          "file": ""
+        },
+        {
+          "gameVersion": "Minecraft 1.20.4",
+          "loader": "Forge",
+          "release": "Port planned",
+          "status": "Planned",
+          "available": false,
+          "file": ""
+        },
+        {
+          "gameVersion": "Minecraft 1.21.1",
+          "loader": "NeoForge",
+          "release": "Port planned",
+          "status": "Planned",
+          "available": false,
+          "file": ""
+        }
+      ]
     },
     {
+      "id": "aetherluma-cinematic",
       "name": "AetherLuma Cinematic: Cosmic End",
       "game": "minecraft",
       "type": "shader",
-      "version": "V3",
       "status": "Finished",
       "rarity": "mythic",
       "icon": "🌌",
-      "loader": "Oculus / Forge 1.20.1 • Finished",
-      "description": "-Finished- Cinematic Minecraft shader pack with cosmic fantasy colors, stronger atmosphere, glowing visuals and RPG-like mood.",
-      "file": "https://github.com/Samus-18/extroxter-rpg-vault/releases/download/v1.0/AetherLuma_Cinematic_Oculus_1.20.1_COSMIC_END_V3.zip"
+      "description_cs": "Dokončený filmový shader s kosmickými fantasy barvami, silnější atmosférou, zářícími efekty a RPG náladou.",
+      "description_en": "Finished cinematic shader with cosmic fantasy colors, stronger atmosphere, glowing visuals and an RPG-like mood.",
+      "versions": [
+        {
+          "gameVersion": "Minecraft 1.20.1",
+          "loader": "Oculus / Forge",
+          "release": "Cosmic End V3",
+          "status": "Finished",
+          "recommended": true,
+          "available": true,
+          "file": "https://github.com/Samus-18/extroxter-rpg-vault/releases/download/v1.0/AetherLuma_Cinematic_Oculus_1.20.1_COSMIC_END_V3.zip"
+        }
+      ]
     },
     {
+      "id": "aetherluma-lite",
       "name": "AetherLuma Lite: Low PC",
       "game": "minecraft",
       "type": "shader",
-      "version": "1.20.1",
       "status": "Finished",
       "rarity": "rare",
       "icon": "✨",
-      "loader": "Oculus / Forge 1.20.1 • Finished",
-      "description": "-Finished- Performance-friendly shader pack made for lower-end PCs while keeping a fantasy Minecraft look.",
-      "file": "https://github.com/Samus-18/extroxter-rpg-vault/releases/download/v1.0/AetherLuma_Lite_Oculus_1.20.1_LOW_PC.zip"
+      "description_cs": "Výkonnostně šetrný shader pro slabší počítače, který zachovává fantasy Minecraft vzhled.",
+      "description_en": "Performance-friendly shader for lower-end PCs that keeps a fantasy Minecraft look.",
+      "versions": [
+        {
+          "gameVersion": "Minecraft 1.20.1",
+          "loader": "Oculus / Forge",
+          "release": "Low PC",
+          "status": "Finished",
+          "recommended": true,
+          "available": true,
+          "file": "https://github.com/Samus-18/extroxter-rpg-vault/releases/download/v1.0/AetherLuma_Lite_Oculus_1.20.1_LOW_PC.zip"
+        }
+      ]
     },
     {
+      "id": "enemy-trinket-loot-capped",
       "name": "Enemy Trinket Loot Capped",
       "game": "tboi",
       "type": "mod",
-      "version": "1.0",
       "status": "Finished",
       "rarity": "epic",
       "icon": "🎲",
-      "loader": "Repentance / Repentogon • Finished",
-      "description": "-Finished- Isaac mod that adds capped trinket and loot drops from enemies, champions and bosses for a more rewarding run progression.",
-      "file": "https://github.com/Samus-18/extroxter-rpg-vault/releases/download/v1.0/Enemy_Trinket_Loot_Capped.zip"
+      "description_cs": "Isaac mod přidávající omezené dropy trinketů a odměn z nepřátel, championů a bossů.",
+      "description_en": "Isaac mod adding capped trinket and reward drops from enemies, champions and bosses.",
+      "versions": [
+        {
+          "gameVersion": "Repentance / Repentance+",
+          "loader": "Repentogon",
+          "release": "1.0",
+          "status": "Finished",
+          "recommended": true,
+          "available": true,
+          "file": "https://github.com/Samus-18/extroxter-rpg-vault/releases/download/v1.0/Enemy_Trinket_Loot_Capped.zip"
+        }
+      ]
     },
     {
+      "id": "isaac-performance-helper",
       "name": "Isaac Performance Helper",
       "game": "tboi",
       "type": "mod",
-      "version": "1.0",
       "status": "Finished",
       "rarity": "rare",
       "icon": "⚙️",
-      "loader": "Repentance / Repentogon • Finished",
-      "description": "-Finished- Small helper mod for The Binding of Isaac focused on smoother gameplay, useful fixes and performance-friendly behavior.",
-      "file": "https://github.com/Samus-18/extroxter-rpg-vault/releases/download/v1.0/Isaac_Performance_Helper.zip"
+      "description_cs": "Malý pomocný mod pro plynulejší hraní, užitečné opravy a výkonově šetrné chování.",
+      "description_en": "Small helper mod for smoother gameplay, useful fixes and performance-friendly behavior.",
+      "versions": [
+        {
+          "gameVersion": "Repentance / Repentance+",
+          "loader": "Repentogon",
+          "release": "1.0",
+          "status": "Finished",
+          "recommended": true,
+          "available": true,
+          "file": "https://github.com/Samus-18/extroxter-rpg-vault/releases/download/v1.0/Isaac_Performance_Helper.zip"
+        }
+      ]
     },
     {
+      "id": "universal-completion-board",
       "name": "Universal Completion Board",
       "game": "tboi",
       "type": "mod",
-      "version": "SteamReady",
       "status": "Finished",
       "rarity": "legendary",
       "icon": "🏆",
-      "loader": "Repentance / Steam Workshop Ready • Finished",
-      "description": "-Finished- Universal completion board mod prepared for Steam upload, made to track and display completion progress clearly.",
-      "file": "https://github.com/Samus-18/extroxter-rpg-vault/releases/download/v1.0/Universal_Completion_Board_SteamReady.zip"
+      "description_cs": "Univerzální completion board připravený pro Steam Workshop, který přehledně sleduje zakončení a postup.",
+      "description_en": "Universal completion board prepared for Steam Workshop that clearly tracks endings and progression.",
+      "versions": [
+        {
+          "gameVersion": "Repentance / Repentance+",
+          "loader": "Steam Workshop ready",
+          "release": "SteamReady",
+          "status": "Finished",
+          "recommended": true,
+          "available": true,
+          "file": "https://github.com/Samus-18/extroxter-rpg-vault/releases/download/v1.0/Universal_Completion_Board_SteamReady.zip"
+        }
+      ]
     }
   ]
 }
