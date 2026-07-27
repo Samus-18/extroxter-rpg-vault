@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - agent/glyphbound-build-runner-2026-07-28
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
