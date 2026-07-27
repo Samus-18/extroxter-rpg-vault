@@ -1,12 +1,10 @@
 name: Glyphbound Offline Build Cache
 
 on:
-  pull_request:
+  push:
     branches:
       - main
     paths:
-      - 'glyphbound-cache-probe/**'
-      - '.github/workflows/glyphbound-public-runner-smoke.yml'
       - '.github/workflows/glyphbound-offline-cache.yml'
   workflow_dispatch:
 
@@ -20,7 +18,7 @@ jobs:
     env:
       GRADLE_USER_HOME: ${{ runner.temp }}/glyphbound-gradle-home
     steps:
-      - name: Checkout dependency probe only
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Set up JDK 17
@@ -34,6 +32,56 @@ jobs:
         with:
           gradle-version: '8.8'
           cache-disabled: true
+
+      - name: Create public-dependency-only Forge probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p glyphbound-cache-probe/src/main/java/com/extroxter/cacheprobe
+          cat > glyphbound-cache-probe/settings.gradle <<'EOF'
+          pluginManagement {
+              repositories {
+                  gradlePluginPortal()
+                  maven { url = 'https://maven.minecraftforge.net/' }
+                  mavenCentral()
+              }
+          }
+          rootProject.name = 'glyphbound_cache_probe'
+          EOF
+          cat > glyphbound-cache-probe/build.gradle <<'EOF'
+          plugins {
+              id 'java'
+              id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+          }
+          group = 'com.extroxter.cacheprobe'
+          version = '1.0.0'
+          def forgeVersion = providers.gradleProperty('forge_version').orElse('1.20.1-47.4.10')
+          java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+          minecraft { mappings channel: 'official', version: '1.20.1' }
+          repositories {
+              mavenCentral()
+              maven { url = uri('https://maven.theillusivec4.top/') }
+              maven {
+                  url = 'https://api.modrinth.com/maven'
+                  content { includeGroup 'maven.modrinth' }
+              }
+          }
+          dependencies {
+              minecraft "net.minecraftforge:forge:${forgeVersion.get()}"
+              implementation fg.deobf('maven.modrinth:8BmcQJ2H:RBA7lJaW')
+              implementation fg.deobf('top.theillusivec4.curios:curios-forge:5.14.1+1.20.1')
+          }
+          tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+          EOF
+          cat > glyphbound-cache-probe/gradle.properties <<'EOF'
+          org.gradle.jvmargs=-Xmx4G
+          org.gradle.daemon=false
+          forge_version=1.20.1-47.4.10
+          EOF
+          cat > glyphbound-cache-probe/src/main/java/com/extroxter/cacheprobe/DependencyProbe.java <<'EOF'
+          package com.extroxter.cacheprobe;
+          public final class DependencyProbe { private DependencyProbe() {} }
+          EOF
 
       - name: Resolve exact Forge and library dependencies
         working-directory: glyphbound-cache-probe
