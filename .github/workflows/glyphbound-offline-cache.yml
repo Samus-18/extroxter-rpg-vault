@@ -6,6 +6,13 @@ on:
       - main
     paths:
       - '.github/workflows/glyphbound-offline-cache.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'glyphbound-cache-probe/**'
+      - '.github/workflows/glyphbound-public-runner-smoke.yml'
+      - '.github/workflows/glyphbound-offline-cache.yml'
   workflow_dispatch:
 
 permissions:
