@@ -1,0 +1,91 @@
+name: Glyphbound Offline Build Cache
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'glyphbound-cache-probe/**'
+      - '.github/workflows/glyphbound-public-runner-smoke.yml'
+      - '.github/workflows/glyphbound-offline-cache.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  prepare-offline-cache:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      GRADLE_USER_HOME: ${{ runner.temp }}/glyphbound-gradle-home
+    steps:
+      - name: Checkout dependency probe only
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Gradle 8.8
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.8'
+          cache-disabled: true
+
+      - name: Resolve exact Forge and library dependencies
+        working-directory: glyphbound-cache-probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$GRADLE_USER_HOME"
+          gradle --version
+          gradle compileJava --no-daemon --stacktrace --refresh-dependencies -Pforge_version=1.20.1-47.4.10 | tee "$GITHUB_WORKSPACE/glyphbound-cache-build.log"
+          gradle dependencies --configuration compileClasspath --no-daemon -Pforge_version=1.20.1-47.4.10 | tee "$GITHUB_WORKSPACE/glyphbound-cache-dependencies.log"
+
+      - name: Package portable JDK, Gradle and dependency cache
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$GITHUB_WORKSPACE/offline-cache"
+          GRADLE_BIN="$(readlink -f "$(command -v gradle)")"
+          GRADLE_INSTALL="$(dirname "$(dirname "$GRADLE_BIN")")"
+          echo "JAVA_HOME=$JAVA_HOME" | tee "$GITHUB_WORKSPACE/offline-cache/paths.txt"
+          echo "GRADLE_INSTALL=$GRADLE_INSTALL" | tee -a "$GITHUB_WORKSPACE/offline-cache/paths.txt"
+          echo "GRADLE_USER_HOME=$GRADLE_USER_HOME" | tee -a "$GITHUB_WORKSPACE/offline-cache/paths.txt"
+          tar --zstd -cf "$GITHUB_WORKSPACE/offline-cache/jdk17.tar.zst" -C "$(dirname "$JAVA_HOME")" "$(basename "$JAVA_HOME")"
+          tar --zstd -cf "$GITHUB_WORKSPACE/offline-cache/gradle-8.8.tar.zst" -C "$(dirname "$GRADLE_INSTALL")" "$(basename "$GRADLE_INSTALL")"
+          tar --zstd -cf "$GITHUB_WORKSPACE/offline-cache/gradle-cache.tar.zst" -C "$(dirname "$GRADLE_USER_HOME")" "$(basename "$GRADLE_USER_HOME")"
+          sha256sum "$GITHUB_WORKSPACE/offline-cache"/*.tar.zst > "$GITHUB_WORKSPACE/offline-cache/SHA256SUMS.txt"
+          du -h "$GITHUB_WORKSPACE/offline-cache"/*
+
+      - name: Upload JDK 17
+        uses: actions/upload-artifact@v4
+        with:
+          name: glyphbound-offline-jdk17
+          path: offline-cache/jdk17.tar.zst
+          compression-level: 0
+          retention-days: 3
+
+      - name: Upload Gradle 8.8
+        uses: actions/upload-artifact@v4
+        with:
+          name: glyphbound-offline-gradle-8.8
+          path: offline-cache/gradle-8.8.tar.zst
+          compression-level: 0
+          retention-days: 3
+
+      - name: Upload Forge dependency cache and logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: glyphbound-offline-forge-cache
+          path: |
+            offline-cache/gradle-cache.tar.zst
+            offline-cache/SHA256SUMS.txt
+            offline-cache/paths.txt
+            glyphbound-cache-build.log
+            glyphbound-cache-dependencies.log
+          compression-level: 0
+          retention-days: 3
