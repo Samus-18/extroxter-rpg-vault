@@ -1,0 +1,28 @@
+name: Glyphbound Public Runner Smoke
+
+on:
+  push:
+    branches:
+      - agent/glyphbound-build-runner-2026-07-28
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify public runner
+        shell: bash
+        run: |
+          set -euo pipefail
+          java -version
+          python3 --version
+          echo 'PUBLIC_RUNNER_OK' > glyphbound-public-runner-ok.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: glyphbound-public-runner-smoke
+          path: glyphbound-public-runner-ok.txt
