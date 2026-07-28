@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:
-      GRADLE_USER_HOME: ${{ runner.temp }}/glyphbound-gradle-home
+      GRADLE_USER_HOME: ${{ github.workspace }}/.glyphbound-gradle-home
     steps:
       - name: Create run tracker issue
         id: tracker
