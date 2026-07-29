@@ -1,0 +1,61 @@
+name: Temporary Glyphbound private build runner
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-private-glyphbound:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      CI: 'true'
+      USERPROFILE: /home/runner
+    steps:
+      - name: Checkout private Glyphbound source
+        uses: actions/checkout@v4
+        with:
+          repository: Samus-18/glyphbound-arcane-legacy
+          ref: agent/glyphbound-video-rebuild-2026-07-26
+          token: ${{ github.token }}
+          fetch-depth: 1
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Python 3
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Set up Gradle 8.8
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.8'
+
+      - name: Build full private Glyphbound source
+        shell: pwsh
+        run: ./BUILD_GLYPHBOUND_3_31_0_13_MASTER.ps1
+
+      - name: Verify production package
+        shell: pwsh
+        run: ./VERIFY_GLYPHBOUND_3_31_0_13.ps1
+
+      - name: Upload verified JAR
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: glyphbound-3.31.0.13-private-checkout-build
+          if-no-files-found: error
+          retention-days: 14
+          path: |
+            build/libs/glyphbound_arcane_legacy-*.jar
+            build/reports/glyphbound/*.txt
