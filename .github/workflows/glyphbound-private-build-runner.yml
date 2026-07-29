@@ -1,0 +1,14 @@
+name: Temporary Glyphbound private build runner
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  call-private-glyphbound-build:
+    uses: Samus-18/glyphbound-arcane-legacy/.github/workflows/reusable-public-funded-build.yml@agent/glyphbound-video-rebuild-2026-07-26
